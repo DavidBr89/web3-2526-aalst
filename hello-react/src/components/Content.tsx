@@ -1,5 +1,6 @@
 import React from "react";
 import CourseList from "./CourseList";
+import MyButton from "./MyButton";
 
 interface ICourse {
   id: number;
@@ -30,6 +31,7 @@ const Content = () => {
         qui magnam repudiandae corrupti officiis alias modi quisquam! Hic, nihil
         alias?
       </p>
+      <MyButton onClick={}>Knop vanuit Content</MyButton>
       <CourseList />
     </>
   );
