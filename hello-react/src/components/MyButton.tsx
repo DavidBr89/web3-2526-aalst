@@ -1,7 +1,9 @@
-import React, { type PropsWithChildren } from "react";
+import React, { type MouseEvent, type PropsWithChildren } from "react";
+
+// type MyMouseEvent = React.MouseEvent<HTMLButtonElement>
 
 interface MyButtonProps extends PropsWithChildren {
-  test: string;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 // type MyButtonPropsType = MyButtonProps & PropsWithChildren;
@@ -13,14 +15,14 @@ interface MyButtonProps extends PropsWithChildren {
 
 // 1
 
-const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  console.log("Geklikt op de knop ", event.target);
-};
+// const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//   console.log("Geklikt op de knop ", event.target);
+// };
 
-const MyButton = (props: MyButtonProps) => {
+const MyButton = ({ onClick, children }: MyButtonProps) => {
   // 2
 
-  return <button onClick={handleClick}>{props.children}</button>;
+  return <button onClick={onClick}>{children}</button>;
 };
 
 export default MyButton;

@@ -9,7 +9,12 @@ function App() {
     <>
       <Header />
       <Content />
-      <MyButton>Knop vanuit App</MyButton>
+      <MyButton
+        onClick={() => {
+          alert("Test");
+        }}>
+        Knop vanuit App
+      </MyButton>
       <Footer />
     </>
   );
