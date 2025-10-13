@@ -3,6 +3,7 @@ import MyButton from "./MyButton";
 
 const Counter = () => {
   const [counter, setCounter] = useState(0);
+  const [favorites, setFavorites] = useState<number[]>([]);
 
   return (
     <div>
@@ -22,8 +23,14 @@ const Counter = () => {
         }}>
         +
       </MyButton>
-      <MyButton onClick={() => {}}>Voeg toe aan favorieten</MyButton>
-      <p>Favorieten: {...}</p>
+      <MyButton
+        onClick={() => {
+          // TODO: Voeg enkel cijfer toe als dit nog niet in de array zit
+          setFavorites([...favorites, counter]);
+        }}>
+        Voeg toe aan favorieten
+      </MyButton>
+      <p>Favorieten: {favorites}</p>
     </div>
   );
 };
