@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 
 const AboutPage = () => {
   const [counter, setCounter] = useState(0);
 
   return (
-    <div>
-      <Header />
+    <div className="p-4">
       <p className="text-4xl font-bold">{counter}</p>
       <button
         onClick={() => {

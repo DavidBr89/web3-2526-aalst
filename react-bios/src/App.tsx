@@ -3,6 +3,9 @@ import "./App.css";
 
 import Axios from "axios";
 import Header from "./components/Header";
+import { useNavigate } from "react-router-dom";
+
+const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 interface MovieResponse {
   page: number;
@@ -33,6 +36,9 @@ function App() {
   const [isRefresh, setIsRefresh] = useState(false);
   const [counter, setCounter] = useState(0);
 
+  // HOOK om te navigeren
+  const navigate = useNavigate();
+
   const fetchMovies = async () => {
     try {
       // FETCH methode - ingebakken in JS
@@ -53,8 +59,7 @@ function App() {
         "https://api.themoviedb.org/3/movie/popular",
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMGYyZjgzNWQ4MDg5Y2Y5YTczMTk3YTJhMWRkYWJiMyIsIm5iZiI6MTYwNzA4MDMxNi43NjE5OTk4LCJzdWIiOiI1ZmNhMTk3YzY2YTdjMzAwM2U0Nzg0YTEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.33XyUlqIMYXU2Y2nlLRiBuO5j2SlJAPOXao_dmE7mBo",
+            Authorization: import.meta.env.TMDB_KEY,
           },
         }
       );
@@ -85,20 +90,30 @@ function App() {
 
   return (
     <div className="p-4 flex flex-col gap-4">
-      <Header />
       {/* <h1>{derivedCounter}</h1> */}
       {/* {response.map()} */}
       {/* Zorg er voor dat alle titels in een paragraaf getoond worden */}
-
-      {films.map((m) => {
-        return (
-          <p key={m.id}>
-            {m.backdrop_path}
-            {m.title} {m.vote_count}
-          </p>
-        );
-      })}
-
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {films.map((m) => {
+          return (
+            <div
+              className="shadow-lg rounded-xl overflow-clip hover:scale-105 cursor-pointer"
+              onClick={() => {
+                navigate(`/details/${m.id}`);
+              }}
+              key={m.id}>
+              <img
+                className=""
+                src={`${IMG_BASE_URL}${m.poster_path}`}
+                alt=""
+              />
+              <div className="text-center py-4">
+                <p>{m.title}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
       <button
         className="bg-teal-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-teal-700"
         onClick={() => {

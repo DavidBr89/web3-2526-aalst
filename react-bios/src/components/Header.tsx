@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 
@@ -10,7 +9,29 @@ const Header = () => {
         <img className="h-16" src={logo} alt="" />
       </Link>
       <div className="flex gap-8">
-        <Link to="about">About</Link>
+        <NavLink
+          className={({ isActive }) =>
+            `hover:text-white ${
+              isActive
+                ? "underline underline-offset-8 text-white"
+                : " text-teal-800"
+            }`
+          }
+          to="about">
+          About
+        </NavLink>
+        {/* TODO: Verander dit in een custom NavLink component zoals MyButton */}
+        <NavLink
+          className={({ isActive }) =>
+            `hover:text-white ${
+              isActive
+                ? "underline underline-offset-8 text-white"
+                : " text-teal-800"
+            }`
+          }
+          to="contact">
+          Contact
+        </NavLink>
       </div>
 
       {/* <a href="/">Home</a>
