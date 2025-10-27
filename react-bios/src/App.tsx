@@ -93,6 +93,7 @@ function App() {
       {films.map((m) => {
         return (
           <p key={m.id}>
+            {m.backdrop_path}
             {m.title} {m.vote_count}
           </p>
         );
