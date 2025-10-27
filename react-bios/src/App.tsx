@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import Axios from "axios";
+import Header from "./components/Header";
 
 interface MovieResponse {
   page: number;
@@ -84,6 +85,7 @@ function App() {
 
   return (
     <div className="p-4 flex flex-col gap-4">
+      <Header />
       {/* <h1>{derivedCounter}</h1> */}
       {/* {response.map()} */}
       {/* Zorg er voor dat alle titels in een paragraaf getoond worden */}
