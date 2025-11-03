@@ -33,6 +33,9 @@ interface MovieResponse {
 
 // import movies from "./data/films.json";
 
+import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
+import { useFavorites } from "./hooks/useFavorites";
+
 function App() {
   const [films, setFilms] = useState<Film[]>([]);
   const [isRefresh, setIsRefresh] = useState(false);
@@ -90,6 +93,8 @@ function App() {
 
   // const derivedCounter = counter * 5;
 
+  const { addFavorites, favorites } = useFavorites();
+
   return (
     <div className="p-4 flex flex-col gap-4">
       {/* <h1>{derivedCounter}</h1> */}
@@ -99,7 +104,7 @@ function App() {
         {films.map((m) => {
           return (
             <div
-              className="shadow-lg rounded-xl overflow-clip hover:scale-105 cursor-pointer"
+              className="relative shadow-lg rounded-xl overflow-clip hover:scale-105 cursor-pointer"
               onClick={() => {
                 navigate(`/details/${m.id}`);
               }}
@@ -112,6 +117,18 @@ function App() {
               <div className="text-center py-4">
                 <p>{m.title}</p>
               </div>
+              <button
+                onClick={(event) => {
+                  addFavorites(m);
+                  event.stopPropagation();
+                }}
+                className="cursor-pointer bg-teal-600 hover:bg-teal-500 rounded-full p-4 text-white absolute top-2 right-2">
+                {favorites.some((f) => f.id === m.id) ? (
+                  <MdOutlineStar className="text-amber-300" size={24} />
+                ) : (
+                  <MdOutlineStarBorder size={24} />
+                )}
+              </button>
             </div>
           );
         })}

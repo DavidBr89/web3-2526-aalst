@@ -32,6 +32,18 @@ const Header = () => {
           to="contact">
           Contact
         </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            `hover:text-white ${
+              isActive
+                ? "underline underline-offset-8 text-white"
+                : " text-teal-800"
+            }`
+          }
+          to="favorites">
+          Favorieten
+        </NavLink>
       </div>
 
       {/* <a href="/">Home</a>

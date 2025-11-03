@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutPage from "./pages/AboutPage.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import DetailsPage from "./pages/DetailsPage.tsx";
+import FavoritesProvider from "./contexts/FavoritesContext.tsx";
+import FavoritesPage from "./pages/FavoritesPage.tsx";
 
 const browserRouter = createBrowserRouter([
   {
@@ -24,12 +26,19 @@ const browserRouter = createBrowserRouter([
         path: "details/:movieId",
         element: <DetailsPage />,
       },
+      {
+        path: "favorites",
+        element: <FavoritesPage />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={browserRouter} />
+    {/* Provider van de context gaan wrappen rond de app */}
+    <FavoritesProvider>
+      <RouterProvider router={browserRouter} />
+    </FavoritesProvider>
   </StrictMode>
 );
