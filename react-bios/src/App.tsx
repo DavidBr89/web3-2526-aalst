@@ -12,22 +12,24 @@ interface MovieResponse {
   results: Film[];
 }
 
-interface Film {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+// Exporteren van types of interfaces
+// export interface Film {
+// interface Film {
+//   adult: boolean;
+//   backdrop_path: string;
+//   genre_ids: number[];
+//   id: number;
+//   original_language: string;
+//   original_title: string;
+//   overview: string;
+//   popularity: number;
+//   poster_path: string;
+//   release_date: string;
+//   title: string;
+//   video: boolean;
+//   vote_average: number;
+//   vote_count: number;
+// }
 
 // import movies from "./data/films.json";
 
@@ -59,7 +61,7 @@ function App() {
         "https://api.themoviedb.org/3/movie/popular",
         {
           headers: {
-            Authorization: import.meta.env.TMDB_KEY,
+            Authorization: import.meta.env.VITE_TMDB_KEY,
           },
         }
       );
