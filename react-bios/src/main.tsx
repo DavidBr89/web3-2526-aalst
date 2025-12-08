@@ -12,6 +12,7 @@ import FavoritesPage from "./pages/FavoritesPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
+import UsersPage from "./pages/UsersPage.tsx";
 
 const browserRouter = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const browserRouter = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+      },
+      {
+        path: "users",
+        element: <UsersPage />,
       },
     ],
   },

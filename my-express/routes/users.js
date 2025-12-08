@@ -2,23 +2,18 @@ const express = require("express");
 const authMiddleware = require("../middlewares/auth_middleware");
 const adminMiddleware = require("../middlewares/admin_middleware");
 const loggerMiddleware = require("../middlewares/logger_middleware");
+const UsersController = require("../controllers/users_controller");
 const router = express.Router();
 
-router.use(authMiddleware);
-router.use(loggerMiddleware);
+// router.use(authMiddleware);
+// router.use(loggerMiddleware);
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  // res.status(204);
-  res.send(req.myUserId);
-  // res.json({ id: 1, name: "Web 3" });
-});
+router.get("/", authMiddleware, UsersController.getAll);
 
-router.post("/", (req, res) => {
-  const data = req.body;
+router.post("/", UsersController.create);
 
-  res.json(data);
-});
+router.post("/login", UsersController.login);
 
 router.get("/info", (req, res) => {
   res.sendStatus(400);
