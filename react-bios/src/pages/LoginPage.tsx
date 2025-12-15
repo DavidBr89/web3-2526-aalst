@@ -2,8 +2,10 @@ import { useFormik } from "formik";
 import React from "react";
 
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   // TODO: Formulier aanmaken met een email en wachtwoord veld - Opgelet voor de validatie
 
   const formik = useFormik({
@@ -21,7 +23,7 @@ const LoginPage = () => {
           }
         );
 
-        console.log(data.status);
+        navigate("/users");
       } catch (error) {
         console.log(error);
       }

@@ -44,6 +44,18 @@ const Header = () => {
           to="favorites">
           Favorieten
         </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            `hover:text-white ${
+              isActive
+                ? "underline underline-offset-8 text-white"
+                : " text-teal-800"
+            }`
+          }
+          to="users">
+          Gebruikers
+        </NavLink>
       </div>
 
       {/* <a href="/">Home</a>

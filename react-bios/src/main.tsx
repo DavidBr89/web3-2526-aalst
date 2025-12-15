@@ -13,6 +13,8 @@ import ContactPage from "./pages/ContactPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import UsersPage from "./pages/UsersPage.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import AuthProvider from "./contexts/AuthContext.tsx";
 
 const browserRouter = createBrowserRouter([
   {
@@ -48,7 +50,11 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: "users",
-        element: <UsersPage />,
+        element: (
+          <ProtectedRoute>
+            <UsersPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
@@ -57,8 +63,10 @@ const browserRouter = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {/* Provider van de context gaan wrappen rond de app */}
-    <FavoritesProvider>
-      <RouterProvider router={browserRouter} />
-    </FavoritesProvider>
+    <AuthProvider>
+      <FavoritesProvider>
+        <RouterProvider router={browserRouter} />
+      </FavoritesProvider>
+    </AuthProvider>
   </StrictMode>
 );

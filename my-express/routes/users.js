@@ -3,6 +3,7 @@ const authMiddleware = require("../middlewares/auth_middleware");
 const adminMiddleware = require("../middlewares/admin_middleware");
 const loggerMiddleware = require("../middlewares/logger_middleware");
 const UsersController = require("../controllers/users_controller");
+const { registerValidator } = require("../validators/register_validator");
 const router = express.Router();
 
 // router.use(authMiddleware);
@@ -11,9 +12,13 @@ const router = express.Router();
 /* GET users listing. */
 router.get("/", authMiddleware, UsersController.getAll);
 
-router.post("/", UsersController.create);
+router.post("/", registerValidator, UsersController.create);
 
 router.post("/login", UsersController.login);
+
+router.get("/verify", authMiddleware, UsersController.verify);
+
+router.get("/logout", authMiddleware, UsersController.logout);
 
 router.get("/info", (req, res) => {
   res.sendStatus(400);
